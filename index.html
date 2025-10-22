@@ -577,6 +577,20 @@
 
         .modal-body img { max-width: 100%; height: auto; display: block; }
 
+        /* RTT Badge styling */
+        .rtt-badge {
+            background: #2196F3;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: bold;
+            display: inline-block;
+            margin-left: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            border: 1px solid #1976D2;
+        }
+
         /* Top-down camera positioning guide */
         .positioning-guide {
             position: absolute;
@@ -657,7 +671,7 @@
         const WS_URL = (WS_BASE.replace(/\/$/, '')) + '/ws';
         
         // RTT monitoring configuration
-        const RTT_ENABLED = qp.get('rtt') !== 'false' && !/iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        const RTT_ENABLED = qp.get('rtt') !== 'false'; // Enable RTT on all devices including mobile
         const RTT_PING_INTERVAL = parseInt(qp.get('ping')) || 5000;
         let rttState = {
             enabled: false,
@@ -715,7 +729,9 @@
                         </div>
                     </div>
                     <div id="status" class="status waiting">Ready — Start camera to begin rhythm analysis</div>
-                    <span id="rttBadge" class="rtt-badge" style="display: none;">RTT 0ms</span>
+                    <div style="margin-top: 8px; text-align: center;">
+                        <span id="rttBadge" class="rtt-badge" style="display: none;">RTT 0ms</span>
+                    </div>
                 </div>
                 <div class="card">
                     <h3>Rhythm Analysis</h3>
